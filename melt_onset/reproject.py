@@ -2,22 +2,29 @@ import rasterio
 from rasterio.crs import CRS as rcrs
 from rasterio import warp
 import cartopy
-import cartopy.crs as ccrs
 
-NSIDCNorthPolarStereo_25km = {
-    'pixel_width': 25000,
-    'pixel_height': 25000,
-    'ccrs': {
+
+# Projections
+NSIDCNorthPolarStereo_params = {
         'central_latitude': 90.0,
         'central_longitude': -45.0,
         'false_easting': 0.0,
         'false_northing': 0.0,
         'true_scale_latitude': 70 
-    },
+    }
+NSIDCNorthPolarStereo = ccrs.Stereographic(**NSIDCNorthPolarStereo, globe=src_globe)
+
+
+# Ellipsoids
+Hughs1880Ellps = ccrs.Globe(datum=None, semimajor_axis=6378273., semiminor_axis=6356889.449)
+
+NSIDCNorthPolarStereo_25km = {
+    'pixel_width': 25000,
+    'pixel_height': 25000,
+    'ccrs': ,
     'bounds': [-3850000.000, 3750000., -5350000., 5850000.000]
 }
-Hughs1880Ellps = ccrs.Globe(datum=None, semimajor_axis=6378273., semiminor_axis=6356889.449)
-NSIDCNorthPolarStereo_crs = ccrs.Stereographic(**src_proj['ccrs'], globe=src_globe)
+ 
     
     #define 25-km EASE2 grid
 EASE2_25km = {
