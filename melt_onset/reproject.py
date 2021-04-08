@@ -21,13 +21,13 @@ Hughs1880Ellps = ccrs.Globe(datum=None, semimajor_axis=6378273., semiminor_axis=
 NSIDCNorthPolarStereo_25km = {
     'pixel_width': 25000,
     'pixel_height': 25000,
-    'ccrs': ,
+    'ccrs': '',
     'bounds': [-3850000.000, 3750000., -5350000., 5850000.000]
 }
  
     
-    #define 25-km EASE2 grid
-EASE2_25km = {
+#define 25-km EASE-Grid North
+EASE_25km = {
     'pixel_width': 25067.5,
     'pixel_height': 25067.5,
     'ccrs': {
@@ -39,8 +39,8 @@ EASE2_25km = {
     'bounds': [-4524683.8, 4524683.8, -4524683.8, 4524683.8],
     'size': (361, 361),
 }
-EASE2_Globe = ccrs.Globe(datum=None, semimajor_axis=6371228, semiminor_axis=6371228)
-EASE2_crs = ccrs.LambertAzimuthalEqualArea(**dst_proj['ccrs'], globe=dst_globe)
+EASE_Globe = ccrs.Globe(datum=None, semimajor_axis=6371228, semiminor_axis=6371228)
+EASE_crs = ccrs.LambertAzimuthalEqualArea(**dst_proj['ccrs'], globe=dst_globe)
 
 
 def regrid_PS2EASE(data):
@@ -48,7 +48,7 @@ def regrid_PS2EASE(data):
     src_rcrs = rcrs.from_string(NSIDCNorthPolarStereo_crs.proj4_init)
     #src_rcrs = rcrs.from_string('+proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +k=1 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs')
 
-    dst_rcrs = rcrs.from_string(EASE2_crs.proj4_init)
+    dst_rcrs = rcrs.from_string(EASE_crs.proj4_init)
     #dst_rcrs = rcrs.from_string('+proj=laea +lat_0=90 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs')
 
     # Get shape of source grid
